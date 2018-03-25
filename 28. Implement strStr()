@@ -1,0 +1,19 @@
+使用集合实现，首先将需要查找的字符串放入一个HashSet中，然后遍历母串，
+根据需要查找的字符串的长度来获取对应的字符串使用contains方法来判断
+HashSet是否包含该字符串，有的话返回下标，没有就返回-1。
+
+
+
+class Solution {
+    public int strStr(String haystack, String needle) {
+        if("".equals(haystack)&&"".equals(needle)) return 0;
+        HashSet hashset=new HashSet();
+        hashset.add(needle);
+        for(int i=0;i<haystack.length()&&(haystack.length()-i>=needle.length());i++){
+            String str=haystack.substring(i,i+needle.length());
+            if(hashset.contains(str))
+                return i;
+        }
+        return -1;
+    }
+}
