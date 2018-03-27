@@ -1,0 +1,14 @@
+使用从后往前的循环，首先去除字符串末尾的' ',然后找第一个字符串，并记录长度。
+
+
+class Solution {
+ public int lengthOfLastWord(String s) {
+    int end = s.length()-1;
+    int len = 0;
+    for (int i=end; i>=0 && s.charAt(i)==' '; i--) 
+        end--;    
+    for (int i=end; i>=0 && s.charAt(i)!=' '; i--) 
+        len++;
+    return len;
+    }
+}
