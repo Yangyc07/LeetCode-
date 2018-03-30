@@ -1,0 +1,35 @@
+第一种方法是采用两重循环，每次将整个数组向右挪动一个单位。
+
+第二种方法是定义一个新的数组，通过（i+k)%nums.length 来每次将数字放到对应的位置，从而将数字正确的挪动
+
+ n=7，k=3时
+（0+3)%7=3
+（1+3)%7=4
+（2+3)%7=5
+（3+3)%7=6
+（4+3)%7=0
+（5+3)%7=1
+（6+3)%7=2
+
+
+class Solution {
+    
+    // 时间受限
+    // public void rotate(int[] nums, int k) {
+    //         for(int i=0;i<k;i++){
+    //             int indexnum=nums[nums.length-1];
+    //             for(int j=nums.length-2;j>=0;j--)
+    //                 nums[j+1]=nums[j];
+    //             nums[0]=indexnum;
+    //             }
+    //     }
+    
+    public  void rotate(int []nums , int k){
+        int [] newnums= new int [nums.length];
+        for(int i=0;i<nums.length;i++){
+            newnums[(i+k)%nums.length]=nums[i];
+        }
+        for(int i=0;i<nums.length;i++){
+            nums[i]=newnums[i];
+        }
+    }
