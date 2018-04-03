@@ -1,0 +1,50 @@
+题目：给定一个大小为n的数组，找到大多数元素。大多数元素的元素n/2次出现。
+您可以假设数组是非空的，并且大多数元素总是存在于数组中。
+
+一开始想到就是使用双重循环，因为需要找到的数是大于N/2次的，所以第一层循环只需要到N/2;
+第二重循环依次比较，相同时计数器加一，当计数器大于N/2时返回。但最后这个算法是超时的。
+
+在leetcode的上看到的是使用HashMap<Integer,Integer>,两个整形分别存放数和出现的次数，
+最后遍历map，找出次数最大的，并返回。
+
+
+
+
+
+
+
+
+class Solution {
+    // public int majorityElement(int[] nums) {
+    //     int count=0,index=nums[0];
+    //     for(int i=0;i<=nums.length/2;i++){
+    //         for(int j=i+1;j<nums.length;j++){
+    //             if(nums[j]==nums[i])
+    //                 count++;
+    //             if(count>=nums.length/2)
+    //                 return nums[i];
+    //         }
+    //         count=0;
+    //     }
+    //             return index;
+    // }
+    
+    public int majorityElement(int []nums){
+        Map <Integer,Integer> map=new HashMap<Integer,Integer>();
+        for(int num:nums){
+            if(!map.containsKey(num))
+                map.put(num,1);
+            else
+                map.put(num,map.get(num)+1);
+        }
+        
+         Map.Entry<Integer, Integer> max = null;
+         for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            if (max == null || entry.getValue() > max.getValue()) {
+                max = entry;
+            }
+        }
+        
+        return max.getKey();
+    }
+}
